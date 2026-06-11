@@ -1,0 +1,6 @@
+{
+  "name": "Black Swan",
+  "description": "Black Swan — Elegância Natural · Autoral · Singular. Universo, identidade e processo criativo da marca.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
