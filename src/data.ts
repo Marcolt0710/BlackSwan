@@ -89,6 +89,7 @@ export interface BrandInfo {
   instagram: string;
   instagramUrl: string;
   creatorName: string;
+  whatsapp: string;
 }
 
 // Configurações Globais da Marca Black Swan
@@ -97,6 +98,7 @@ export const BRAND_INFO: BrandInfo = {
   email: "contato@blackswan.com.br",                   // E-mail de atendimento real
   instagram: "@blackswanbymc",                         // Nome de usuário do Instagram
   instagramUrl: "https://instagram.com/blackswanbymc", // Link para o Instagram
-  creatorName: "Maria Cecilia Latapiat"                // Nome da fundadora/criadora
+  creatorName: "Maria Cecilia Latapiat",                // Nome da fundadora/criadora
+  whatsapp: "5512999999999", // substitua pelo número real: 55 + DDD + número, sem espaços
 };
 
