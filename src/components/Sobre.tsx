@@ -1,19 +1,62 @@
+import { useState } from "react";
 import { motion } from "motion/react";
+import { MOODBOARD_IMAGES } from "../data";
+
+interface MoodImageProps {
+  key?: string;
+  src: string;
+  alt: string;
+  title: string;
+  tag: string;
+  idx: number;
+}
+
+function MoodImage({ src, alt, title, tag, idx }: MoodImageProps) {
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.96 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{
+        duration: 0.8,
+        delay: (idx % 3) * 0.1,
+        ease: [0.25, 0, 0, 1],
+      }}
+      className="aspect-square overflow-hidden bg-[#0A0A0A]/5 border border-[#0A0A0A]/5 flex items-center justify-center relative group"
+    >
+      {!hasError ? (
+        <img
+          src={src}
+          alt={alt}
+          referrerPolicy="no-referrer"
+          loading="lazy"
+          width={300}
+          height={300}
+          onError={() => setHasError(true)}
+          className="w-full h-full object-cover filter grayscale contrast-[1.05] hover:grayscale-[40%] hover:scale-[1.04] transition-all duration-[700ms] ease-in-out cursor-crosshair"
+        />
+      ) : (
+        // Editorial, premium text-based card fallback if the image fails to load
+        <div className="w-full h-full p-4 md:p-6 flex flex-col justify-between bg-[#0A0A0A]/5 border border-[#0A0A0A]/10 select-none text-left">
+          <span className="font-sans text-[9px] tracking-[0.15em] text-gold uppercase font-light">
+            {tag}
+          </span>
+          <span className="font-serif italic text-sm md:text-base text-[#0A0A0A] font-light leading-snug">
+            {title}
+          </span>
+          <span className="font-sans text-[8px] text-text-muted uppercase tracking-widest">
+            BLACK SWAN
+          </span>
+        </div>
+      )}
+    </motion.div>
+  );
+}
 
 export default function Sobre() {
   const words = ["Autoral.", "Curatorial.", "Com alma."];
-
-  const gridImages = [
-    "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=300&h=300&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=300&h=300&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=300&h=300&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&h=300&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1553531889-e6cf4d692b1b?w=300&h=300&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1612538498456-e861df91d4d0?w=300&h=300&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1536336095259-c3b6b5e4df86?w=300&h=300&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop&q=80",
-  ];
 
   return (
     <section
@@ -52,31 +95,17 @@ export default function Sobre() {
           </p>
         </motion.div>
 
-        {/* Right column - 3x3 Grid of absolute greyscale */}
+        {/* Right column - 3x3 Grid of absolute greyscale with error fallbacks */}
         <div className="grid grid-cols-3 grid-rows-3 gap-[3px]">
-          {gridImages.map((src, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.96 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{
-                duration: 0.8,
-                delay: (idx % 3) * 0.1,
-                ease: [0.25, 0, 0, 1],
-              }}
-              className="aspect-square overflow-hidden bg-white/5"
-            >
-              <img
-                src={src}
-                alt={`Black Swan moodboard ${idx + 1}`}
-                referrerPolicy="no-referrer"
-                loading="lazy"
-                width={300}
-                height={300}
-                className="w-full h-full object-cover filter grayscale contrast-[1.05] hover:grayscale-[40%] hover:scale-[1.04] transition-all duration-[700ms] ease-in-out cursor-crosshair"
-              />
-            </motion.div>
+          {MOODBOARD_IMAGES.map((item, idx) => (
+            <MoodImage
+              key={item.id}
+              src={item.image}
+              alt={`Galeria de Inspiração Black Swan: ${item.title} - Representando ${item.tag}`}
+              title={item.title}
+              tag={item.tag}
+              idx={idx}
+            />
           ))}
         </div>
       </div>

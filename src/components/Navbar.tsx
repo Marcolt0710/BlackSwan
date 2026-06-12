@@ -5,10 +5,11 @@ interface NavLinkProps {
   key?: string;
   href: string;
   label: string;
+  scrolled: boolean;
   onClick?: () => void;
 }
 
-function NavLink({ href, label, onClick }: NavLinkProps) {
+function NavLink({ href, label, scrolled, onClick }: NavLinkProps) {
   return (
     <a
       href={href}
@@ -20,7 +21,11 @@ function NavLink({ href, label, onClick }: NavLinkProps) {
         }
         if (onClick) onClick();
       }}
-      className="font-sans text-[0.8rem] tracking-[0.15em] uppercase text-text-muted hover:text-off-white transition-colors duration-300"
+      className={`font-sans text-[0.8rem] tracking-[0.15em] uppercase transition-colors duration-300 ${
+        scrolled
+          ? "text-text-muted hover:text-off-white"
+          : "text-[#0A0A0A]/65 hover:text-[#0A0A0A]"
+      }`}
     >
       {label}
     </a>
@@ -75,7 +80,11 @@ export default function Navbar() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="font-logo text-[1.3rem] tracking-[0.25em] text-off-white font-light select-none uppercase leading-none"
+            className={`font-logo text-[1.3rem] tracking-[0.25em] font-light select-none uppercase leading-none transition-colors duration-500 ${
+              scrolled || mobileMenuOpen
+                ? "text-off-white"
+                : "text-[#0A0A0A] md:text-off-white"
+            }`}
           >
             BLACK SWAN
           </a>
@@ -83,7 +92,12 @@ export default function Navbar() {
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8 lg:gap-10">
             {links.map((link) => (
-              <NavLink key={link.href} href={link.href} label={link.label} />
+              <NavLink
+                key={link.href}
+                href={link.href}
+                label={link.label}
+                scrolled={scrolled}
+              />
             ))}
           </div>
 
@@ -94,19 +108,19 @@ export default function Navbar() {
             aria-label="Abrir menu"
           >
             <span
-              className={`w-full h-[1px] bg-off-white transition-all duration-300 ${
-                mobileMenuOpen ? "rotate-45 translate-y-[6px]" : ""
-              }`}
+              className={`w-full h-[1px] transition-all duration-300 ${
+                scrolled || mobileMenuOpen ? "bg-off-white" : "bg-[#0A0A0A]"
+              } ${mobileMenuOpen ? "rotate-45 translate-y-[6px]" : ""}`}
             />
             <span
-              className={`w-full h-[1px] bg-off-white transition-all duration-300 ${
-                mobileMenuOpen ? "opacity-0" : ""
-              }`}
+              className={`w-full h-[1px] transition-all duration-300 ${
+                scrolled || mobileMenuOpen ? "bg-off-white" : "bg-[#0A0A0A]"
+              } ${mobileMenuOpen ? "opacity-0" : ""}`}
             />
             <span
-              className={`w-full h-[1px] bg-off-white transition-all duration-300 ${
-                mobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""
-              }`}
+              className={`w-full h-[1px] transition-all duration-300 ${
+                scrolled || mobileMenuOpen ? "bg-off-white" : "bg-[#0A0A0A]"
+              } ${mobileMenuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`}
             />
           </button>
         </div>

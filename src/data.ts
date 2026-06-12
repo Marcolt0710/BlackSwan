@@ -84,53 +84,19 @@ export const MOODBOARD_IMAGES = [
   }
 ];
 
-export const ATMOSPHERE_GRID = [
-  {
-    id: "atm-1",
-    image: "https://images.unsplash.com/photo-1495360010541-f48722b2b5e8?w=800&h=800&fit=crop",
-    title: "Contraste Texturizado",
-    styleClass: "md:col-span-4 md:row-span-2"
-  },
-  {
-    id: "atm-2",
-    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=400&fit=crop",
-    title: "Formas Eternas",
-    styleClass: "md:col-span-3 md:row-span-1"
-  },
-  {
-    id: "atm-3",
-    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&h=400&fit=crop",
-    title: "Silêncio Matinal",
-    styleClass: "md:col-span-2 md:row-span-1"
-  },
-  {
-    id: "atm-4",
-    image: "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?w=800&h=800&fit=crop",
-    title: "Matéria Orgânica",
-    styleClass: "md:col-span-3 md:row-span-2"
-  },
-  {
-    id: "atm-5",
-    image: "https://images.unsplash.com/photo-1573461160327-f049cf2f6c91?w=600&h=400&fit=crop",
-    title: "Presença e Toque",
-    styleClass: "md:col-span-2 md:row-span-1"
-  },
-  {
-    id: "atm-6",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
-    title: "Trama de Linho",
-    styleClass: "md:col-span-3 md:row-span-1"
-  },
-  {
-    id: "atm-7",
-    image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=400&fit=crop",
-    title: "Silhueta Conectada",
-    styleClass: "md:col-span-4 md:row-span-1"
-  },
-  {
-    id: "atm-8",
-    image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=800&h=400&fit=crop",
-    title: "Vestindo a Alma",
-    styleClass: "md:col-span-8 md:row-span-1"
-  }
-];
+export interface BrandInfo {
+  email: string;
+  instagram: string;
+  instagramUrl: string;
+  creatorName: string;
+}
+
+// Configurações Globais da Marca Black Swan
+// Altere estes valores para conectar os canais reais de atendimento e redes sociais!
+export const BRAND_INFO: BrandInfo = {
+  email: "contato@blackswan.com.br",                   // E-mail de atendimento real
+  instagram: "@blackswanbymc",                         // Nome de usuário do Instagram
+  instagramUrl: "https://instagram.com/blackswanbymc", // Link para o Instagram
+  creatorName: "Maria Cecilia Latapiat"                // Nome da fundadora/criadora
+};
+
