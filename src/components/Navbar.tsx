@@ -55,7 +55,6 @@ export default function Navbar() {
     { href: "#manifesto", label: "Manifesto" },
     { href: "#sobre", label: "Sobre" },
     { href: "#processo", label: "Processo" },
-    { href: "#atmosphere", label: "Atmosfera" },
     { href: "#contato", label: "Contato" },
   ];
 
